@@ -35,7 +35,6 @@ const confettiLayer = document.querySelector("#confettiLayer");
 =================================== */
 
 document.querySelector("#friendName").textContent = friend.name;
-document.querySelector("#letterName").textContent = friend.name;
 document.querySelector("#finalName").textContent = friend.name;
 
 document.title = `Happy Birthday, ${friend.name}! ❤️`;
