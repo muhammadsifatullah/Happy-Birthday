@@ -168,3 +168,45 @@ document.querySelector("#replayBtn").addEventListener("click", () => {
   // Reload করে opening surprise আবার শুরু হবে।
   window.location.reload();
 });
+
+
+/* ===== Scroll-triggered Animations ===== */
+
+const revealElements = document.querySelectorAll(
+  ".birthday-note, .letter-card, .cake-section, .finale"
+);
+
+revealElements.forEach((element) => {
+  element.classList.add("reveal");
+});
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        } else {
+          entry.target.classList.remove("is-visible");
+        }
+
+      });
+    },
+    {
+      threshold: 0.15
+    }
+  );
+
+  revealElements.forEach((element) => {
+    revealObserver.observe(element);
+  });
+} else {
+  revealElements.forEach((element) => {
+    element.classList.add("is-visible");
+  });
+}
+
+
+
+

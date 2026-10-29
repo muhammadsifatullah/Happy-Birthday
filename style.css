@@ -622,3 +622,352 @@ footer {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ===== Visual Polish: Mobile Hero ===== */
+@media (max-width: 800px) {
+  .hero {
+    min-height: auto;
+    gap: 35px;
+    padding-block: 65px 75px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
+    margin-bottom: 20px;
+  }
+
+  .portrait-wrap {
+    width: min(72%, 290px);
+  }
+
+  .hero-note {
+    margin-top: 25px;
+  }
+}
+
+/* Extra-small screens */
+@media (max-width: 440px) {
+  .hero {
+    gap: 28px;
+    padding-block: 45px 60px;
+  }
+
+  .portrait-wrap {
+    width: min(78%, 260px);
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2rem, 9vw, 2.7rem);
+  }
+
+  .hero-message {
+    font-size: 0.95rem;
+  }
+}
+
+/* ===== Visual Polish: Entrance Animations ===== */
+
+@keyframes soft-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-copy > * {
+  animation: soft-fade-up 0.8s ease both;
+}
+
+.hero-copy > *:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.hero-copy > *:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.hero-copy > *:nth-child(3) {
+  animation-delay: 0.35s;
+}
+
+.hero-copy > *:nth-child(4) {
+  animation-delay: 0.5s;
+}
+
+.hero-copy > *:nth-child(5) {
+  animation-delay: 0.65s;
+}
+
+.portrait-wrap {
+  animation: soft-fade-up 1s ease 0.25s both;
+}
+
+
+
+/* ===== Premium Visual Effects ===== */
+
+/* 1. Portrait glow */
+.portrait-glow {
+  opacity: 0.5;
+  filter: blur(48px);
+  transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
+.portrait-wrap:hover .portrait-glow {
+  opacity: 0.8;
+  filter: blur(58px);
+}
+
+.portrait-frame {
+  transition:
+    transform 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.portrait-wrap:hover .portrait-frame {
+  transform: translateY(-5px);
+  border-color: #f9a8d4;
+  box-shadow: 0 30px 90px #a78bfa30;
+}
+
+/* 2. Premium button hover */
+.btn {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 22px #a78bfa18;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px #a78bfa40;
+  filter: brightness(1.06);
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* 3. Gentle cake animation */
+.cake {
+  animation: cake-float 4s ease-in-out infinite;
+}
+
+@keyframes cake-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .cake {
+    animation: none;
+  }
+
+  .portrait-frame,
+  .portrait-glow,
+  .btn {
+    transition: none;
+  }
+}
+
+
+/* ===== Cinematic Letter Reveal ===== */
+
+.letter-content[hidden] {
+  display: none !important;
+}
+
+.letter-content:not([hidden]) {
+  animation: letter-unfold 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: top center;
+}
+
+@keyframes letter-unfold {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.97);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Letter button */
+#letterBtn {
+  box-shadow: 0 0 0 0 #f472b640;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#letterBtn:hover {
+  box-shadow: 0 0 28px #f472b640;
+}
+
+/* ===== Candle Wish Moment ===== */
+
+.cake-section .flame {
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.cake-section .flame.is-out {
+  filter: blur(5px);
+}
+
+.cake-section:has(.flame.is-out) .cake {
+  animation: wish-celebration 0.7s ease;
+}
+
+@keyframes wish-celebration {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .letter-content:not([hidden]),
+  .cake-section:has(.flame.is-out) .cake {
+    animation: none;
+    filter: none;
+  }
+}
+
+/* ===== Final Birthday Finale ===== */
+
+.finale {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: 120px;
+}
+
+.finale::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: min(500px, 100%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #a78bfa18 0%,
+    #f472b60c 45%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.finale-heart {
+  display: inline-block;
+  color: var(--pink);
+  filter: drop-shadow(0 0 15px #f472b650);
+  animation: finale-heartbeat 1.8s ease-in-out infinite;
+}
+
+@keyframes finale-heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  12% {
+    transform: scale(1.15);
+  }
+
+  24% {
+    transform: scale(1);
+  }
+
+  36% {
+    transform: scale(1.1);
+  }
+
+  48% {
+    transform: scale(1);
+  }
+}
+
+.finale h2 {
+  text-wrap: balance;
+}
+
+.finale p {
+  max-width: 540px;
+  margin-inline: auto;
+  line-height: 2;
+}
+
+.finale .btn {
+  margin-top: 8px;
+}
+
+@media (max-width: 440px) {
+  .finale {
+    padding-block: 85px;
+  }
+
+  .finale-heart {
+    font-size: 2.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .finale-heart {
+    animation: none;
+  }
+}
+
+
+/* ===== Enhanced Scroll Reveal ===== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(45px) scale(0.96);
+  filter: blur(5px);
+
+  transition:
+    opacity 1s ease,
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1s ease;
+
+  will-change: opacity, transform, filter;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+    will-change: auto;
+  }
+}
+
+
