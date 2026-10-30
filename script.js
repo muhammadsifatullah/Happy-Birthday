@@ -29,6 +29,12 @@ const flame = document.querySelector("#flame");
 
 const confettiLayer = document.querySelector("#confettiLayer");
 
+const passwordScreen = document.querySelector("#passwordScreen");
+const passwordForm = document.querySelector("#passwordForm");
+const passwordInput = document.querySelector("#passwordInput");
+const passwordError = document.querySelector("#passwordError");
+
+const togglePassword = document.querySelector("#togglePassword");
 
 /* ===================================
    PERSONALIZE THE WEBSITE
@@ -38,6 +44,7 @@ document.querySelector("#friendName").textContent = friend.name;
 document.querySelector("#finalName").textContent = friend.name;
 
 document.title = `Happy Birthday, ${friend.name}! ❤️`;
+
 
 
 
@@ -51,7 +58,9 @@ openBtn.addEventListener("click", () => {
 
   window.setTimeout(() => {
     opening.hidden = true;
-    mainContent.hidden = false;
+    passwordScreen.hidden = false;
+
+    passwordInput.focus();
 
     window.scrollTo({
       top: 0,
@@ -207,6 +216,45 @@ if ("IntersectionObserver" in window) {
   });
 }
 
+
+/* ===== Password Verification ===== */
+
+passwordForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const enteredPassword = passwordInput.value;
+
+  if (enteredPassword === "saad2005") {
+    passwordError.hidden = true;
+    passwordScreen.hidden = true;
+    mainContent.hidden = false;
+
+    window.scrollTo({
+      top: 0,
+      behavior: "auto"
+    });
+  } else {
+    passwordError.hidden = false;
+    passwordInput.value = "";
+    passwordInput.focus();
+  }
+});
+
+
+/* ===== Show / Hide Password ===== */
+
+togglePassword.addEventListener("click", () => {
+  const isHidden = passwordInput.type === "password";
+
+  passwordInput.type = isHidden ? "text" : "password";
+
+  togglePassword.textContent = isHidden ? "🙈" : "👁";
+
+  togglePassword.setAttribute(
+    "aria-label",
+    isHidden ? "Hide password" : "Show password"
+  );
+});
 
 
 

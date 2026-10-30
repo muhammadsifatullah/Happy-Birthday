@@ -43,6 +43,54 @@
   </section>
 
 
+  <!-- Password Screen -->
+  <section class="password-screen" id="passwordScreen" hidden>
+    <div class="password-content">
+
+      <div class="password-icon">🔐</div>
+
+      <h1>A Little Secret for You</h1>
+
+      <p>
+        Enter the secret password to unlock your surprise.
+      </p>
+
+      <form id="passwordForm">
+        
+        <div class="password-input-wrap">
+          <input
+            type="password"
+            id="passwordInput"
+            placeholder="Enter password..."
+            autocomplete="off"
+            required
+          >
+
+          <button
+            type="button"
+            id="togglePassword"
+            class="toggle-password"
+            aria-label="Show password"
+          >
+            👁
+          </button>
+        </div>
+
+
+        <button class="btn" type="submit">
+          Unlock My Surprise <span>🎁</span>
+        </button>
+      </form>
+
+      <p id="passwordError" class="password-error" hidden>
+        Oops! That's not the secret password! ❤️
+      </p>
+
+    </div>
+  </section>
+
+
+
   <!-- Main Website -->
   <main id="mainContent" hidden>
 
